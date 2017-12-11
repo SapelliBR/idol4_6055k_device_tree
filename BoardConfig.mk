@@ -14,17 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#LOCAL_PATH := device/motorola/athene
-LOCAL_PATH := device/alcatel/idol4_6055k
+LOCAL_PATH := device/TCL/idol4
 
-#BOARD_VENDOR := motorola-qcom
+#is this correct?
 BOARD_VENDOR := alcatel-qcom
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Asserts
 #TARGET_OTA_ASSERT_DEVICE := athene,athene_f,xt1621,xt1622,xt1625,xt1626,xt1640,xt1641,xt1642,xt1643,xt1644
-TARGET_OTA_ASSERT_DEVICE := idol4_6055k
+TARGET_OTA_ASSERT_DEVICE := idol4
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8952
@@ -57,10 +56,10 @@ BOARD_DTBTOOL_ARGS := --force-v3 --motorola 1
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_ARCH := arm
 TARGET_KERNEL_CONFIG := idol4_defconfig
-TARGET_KERNEL_SOURCE := kernel/alcatel/idol4_6055k
+TARGET_KERNEL_SOURCE := kernel/TCL/idol4
 #TARGET_PREBUILT_KERNEL := device/alcatel/idol4_6055k/kernel
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-gnueabihf-
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
@@ -141,7 +140,7 @@ ENABLE_SCHED_BOOST := true
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Properties
-#TARGET_SYSTEM_PROP += device/motorola/athene/system.prop
+TARGET_SYSTEM_PROP += device/TCL/idol4/system.prop
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
