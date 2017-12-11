@@ -1,8 +1,30 @@
-# system.prop for msm8952_32
+#
+# from device/tct/idol4/system.prop
+#
+#
+# add vendor.prop for target device
 #
 
-# Radio
-rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
+#[BUGFIX]-Add-BEGIN by TCTNB.bimin.yin,3/12/2015,defect-1021434
+#[Network]Only one available searched network is displayed without indication
+persist.radio.rat_on=combine
+#[BUGFIX]-Add-END by TCTNB.bimin.yin
+
+# { D1031145 '''[PLMN][IMS]MS can not register on IMS network on Anite SAS''' bob.shen 2015-12-16
+# } D1031145 bob.shen 2015-12-16
+#increate forground process thread priority to improve launch performance for task 1157602
+persist.sys.prioproc=true
+#[BUGFIX]-Add-BEGIN by TCTSH.(Liangfeng Xu), 2016/03/16, for PR1759217 Add logs
+log.tag.BluetoothOpp=VERBOSE
+log.tag.BluetoothPbap=VERBOSE
+#[BUGFIX]-Add-END by TCTSH.(Liangfeng Xu)#
+# from device/tct/common/system.prop
+#
+#
+# system.prop for TCT common build prop
+#
+
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
@@ -13,260 +35,432 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
-persist.radio.no_wait_for_card=1
-persist.radio.dfr_mode_set=1
-persist.radio.relay_oprt_change=1
-persist.radio.msgtunnel.start=true
-persist.radio.oem_ind_to_both=0
-persist.qcril_uim_vcc_feature=1
-persist.data.qmi.adb_logmask=0
-persist.radio.0x9e_not_callname=1
-persist.radio.mt_sms_ack=30
-persist.radio.force_get_pref=1
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.sib16_support=1
-persist.sys.qc.sub.rdump.on=1
-persist.sys.qc.sub.rdump.max=0
-persist.radio.apn_delay=5000
-keyguard.no_require_sim=true
-persist.radio.RATE_ADAPT_ENABLE=1
-persist.radio.REVERSE_QMI=0
-persist.radio.ROTATION_ENABLE=1
-persist.radio.VT_ENABLE=1
-persist.radio.VT_HYBRID_ENABLE=1
-persist.radio.VT_USE_MDM_TIME=0
-persist.radio.calls.on.ims=true
-persist.radio.domain.ps=0
-persist.radio.jbims=1
-persist.radio.snapshot_enabled=1
-persist.radio.snapshot_timer=22
-persist.radio.videopause.mode=0
-persist.rcs.presence.provision=0
-persist.rcs.supported=0
-persist.rmnet.mux=enabled
-persist.eab.supported=0
-persist.vt.supported=0
-persist.ims.volte=true
-persist.ims.vt=false
-persist.ims.vt.epdg=false
-persist.ims.rcs=false
-persist.ims.disableADBLogs=2
-persist.ims.disableDebugLogs=0
-persist.ims.disableQXDMLogs=0
-persist.ims.disableIMSLogs=0
-persist.radio.sw_mbn_update=1
-persist.radio.custom_ecc=1
-mdc_initial_max_retry=10
-persist.radio.sar_sensor=1
-persist.radio.call.audio.output=0
-ro.telephony.call_ring.multiple=false
+# Start in cdma mode
 
-# Display
-debug.sf.hw=1
-debug.egl.hw=1
+# [BUGFIX]-Mod-BEGIN by TCTNB.Dong.Jiang,09/18/2015,Task-571539
+# [BUGFIX]-Mod-END by TCTNB.Dong.Jiang
+
+debug.sf.hw=0
+debug.egl.hw=0
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
+dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 debug.enable.sglscale=1
-ro.opengles.version=196610
-ro.sf.lcd_density=480
+persist.hwc.downscale_threshold=1.15
 
-# Data
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=false
-persist.data.mode=concurrent
-persist.data.iwlan.enable=true
+#ro.hdmi.enable=true
+#tunnel.decode=true
+#tunnel.audiovideo.decode=true
+#lpa.decode=false
+#lpa.use-stagefright=true
+#persist.speaker.prot.enable=false
+qcom.hw.aac.encoder=true
 
-# Time
-persist.timed.enable=true
+#
+# system props for the cne module
+#
+#[BUGFIX]-Add-BEGIN by TCTNB.Jie.Zhang,11/27/2015,928737,disable cne wqe feature
+#[BUGFIX]-Add-BEGIN by TCTNB.Jie.Zhang,10/12/2015,708337,enable cne wqe feature
+persist.cne.feature=1
+#persist.sys.cnd.wqe=1
+#[BUGFIX]-Add-END by TCTNB.Jie.Zhang
+#[BUGFIX]-Add-END by TCTNB.Jie.Zhang
 
-# CABL
-ro.qualcomm.cabl=0
+#[BUGFIX]-Add-BEGIN by TCTNB.Xijun.Zhang,09/18/2015,528403,571170
+#
+# system props for the dpm module
+#
+persist.dpm.nsrm.bkg.evt=16251
+#[BUGFIX]-Add-END by TCTNB.Xijun.Zhang,09/18/2015,528403,571170
 
-# SDCard
-ro.sys.sdcardfs=true
+#system props for the MM modules
+media.msm8956hw=0
+mm.enable.smoothstreaming=true
+av.debug.disable.pers.cache=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
 
-# Audio
-af.fast_track_multiplier=1
-audio.offload.buffer.size.kb=64
-audio.offload.disable=false
-audio.offload.gapless.enabled=false
-audio.offload.multiple.enabled=false
-audio.offload.pcm.16bit.enable=false
-audio.offload.pcm.24bit.enable=false
-audio.offload.video=false
-ro.audio.offload_wakelock=false
-persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb
-persist.audio.calfile1=/etc/acdbdata/General_cal.acdb
-persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb
-persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb
-persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb
-persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb
-persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb
-persist.audio.dualmic.config=endfire
-persist.audio.fluence.speaker=false
-persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicecomm=true
-persist.audio.fluence.voicerec=false
-ro.config.vc_call_vol_steps=8
-ro.qc.sdk.audio.ssr=false
-ro.qc.sdk.audio.fluencetype=none
-tunnel.audio.encode=false
-audio.dolby.ds2.enabled=true
-audio.playback.mch.downsample=true
+#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE
+mm.enable.qcom_parser=1048303
+
+# Additional buffers shared between Camera and Video
+vidc.enc.dcvs.extra-buff-count=2
+
+#Audio voice concurrency related flags
 voice.playback.conc.disabled=true
 voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
+#Decides the audio fallback path during voice call, deep-buffer and fast are the two allowed fallback paths now.
 voice.conc.fallbackpath=deep-buffer
-audio.offload.min.duration.secs=60
-audio.offload.track.enable=true
-audio.deep_buffer.media=true
-audio.pp.asphere.enabled=false
-audio.safx.pbe.enabled=true
-qcom.hw.aac.encoder=false
+
+#parser input buffer size(256kb) in byte stream mode
 audio.parser.ip.buffer.size=262144
-audio_hal.period_size=240
-persist.audio.endcall.delay=250
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
 
-# Bluetooth
+#system props for time-services
+persist.timed.enable=true
+
+#
+# system prop for opengles version
+#
+# 196608 is decimal for 0x30000 to report major/minor versions as 3/0
+# 196609 is decimal for 0x30001 to report major/minor versions as 3/1
+ro.opengles.version=196609
+
+# System property for cabl
+ro.qualcomm.cabl=2
+
+#
+# System props for telephony
+# System prop to turn on CdmaLTEPhone always
+telephony.lteOnCdmaDevice=1
+
+#
+# System props for bluetooh
+# System prop to turn on hfp client
 bluetooth.hfp.client=1
-qcom.bluetooth.soc=smd
-ro.bluetooth.hfp.ver=1.6
-ro.qualcomm.bt.hci_transport=smd
 
-# Camera
-camera.lowpower.record.enable=1
-camera.display.lmax=1280x720
-camera.display.umax=1920x1080
-persist.camera.HAL3.enabled=0
-camera.hal1.packagelist=com.skype.raider
+#Simulate sdcard on /data/media
+#
+persist.fuse_sdcard=true
 
-# CNE
-persist.cne.feature=1
-persist.sys.cnd.iwlan=1
-persist.cne.logging.qxdm=0
+#
+#snapdragon value add features
+#
+ro.qc.sdk.audio.ssr=false
+##fluencetype can be "fluence" or "fluencepro" or "none"
+ro.qc.sdk.audio.fluencetype=fluence
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+#Set for msm8952
+tunnel.audio.encode = false
+#Buffer size in kbytes for compress offload playback
+audio.offload.buffer.size.kb=64
+#Minimum duration for offload playback in secs
+audio.offload.min.duration.secs=30
+#Enable offload audio video playback by default
+audio.offload.video=true
 
-# HWUI
-ro.hwui.texture_cache_size=40
+#Enable PCM offload by default
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
 
-# set max background services
-ro.config.max_starting_bg=8
+#Enable audio track offload by default
+audio.offload.track.enable=false
+
+#Enable music through deep buffer
+audio.deep_buffer.media=true
+
+#Enable downsampling for multi-channel content > 48Khz
+audio.playback.mch.downsample=true
+
+#enable voice path for PCM VoIP by default
+use.voice.path.for.pcm.voip=true
+
+#System property for FM transmitter
+ro.fm.transmitter=false
+#enable dsp gapless mode by default
+audio.offload.gapless.enabled=true
+
+#multi offload
+audio.offload.multiple.enabled=false
+
+#enable pbe effects
+audio.safx.pbe.enabled=true
+#property for AudioSphere Post processing
+audio.pp.asphere.enabled=false
+
+#Set composition for USB
+#Add Begin by liping.gao(SH)-2015/10/30:set USB AF08 when power on,task:528311
+#Add End by liping.gao (SH)-2015/10/30,task:528311
+#Set read only default composition for USB
+#ro.sys.usb.default.config=diag,serial_smd,rmnet_ipa,adb
+
+#property to enable user to access Google WFD settings
+persist.debug.wfd.enable=1
+#property to enable VDS WFD solution
+persist.hwc.enable_vds=1
+
+#selects CoreSight configuration to enable
+persist.debug.coresight.config=stm-events
+
+#property for vendor specific library
+ro.vendor.at_library=libqti-at.so
+ro.vendor.gt_library=libqti-gt.so
+
+#property to enable narrow search range for video encoding
+vidc.enc.narrow.searchrange=1
+
+#property to enable fingerprint
+persist.qfp=false
+
+#min/max cpu in core control
+ro.core_ctl_min_cpu=2
+ro.core_ctl_max_cpu=4
+
+#property to enable DS2 dap
+audio.dolby.ds2.enabled=true
+
+#HWUI properties
+ro.hwui.texture_cache_size=72
+ro.hwui.layer_cache_size=48
+ro.hwui.r_buffer_cache_size=8
+ro.hwui.path_cache_size=32
+ro.hwui.gradient_cache_size=1
+ro.hwui.drop_shadow_cache_size=6
+ro.hwui.texture_cache_flushrate=0.4
+ro.hwui.text_small_cache_width=1024
+ro.hwui.text_small_cache_height=1024
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=2048
 
 #Enable B service adj transition by default
 ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
 
-# Media
-mm.enable.smoothstreaming=false
-mm.enable.sec.smoothstreaming=false
-media.stagefright.log-uri=1
-media.stagefright.use-awesome=false
-media.stagefright.enable-player=true
-media.stagefright.enable-http=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
-media.stagefright.enable-fma2dp=true
-media.stagefright.enable-scan=true
-media.aac_51_output_enabled=true
-mmp.enable.3g2=true
-ro.media.enc.aud.fileformat=qcp
-ro.media.enc.aud.codec=qcelp
-ro.media.enc.aud.bps=13300
-ro.media.enc.aud.ch=1
-ro.media.enc.aud.hz=8000
-av.offload.enable=false
-use.voice.path.for.pcm.voip=false
-media.msm8956.version=0
-media.msm8956hw=0
-mm.enable.qcom_parser=135715
-vidc.enc.dcvs.extra-buff-count=2
-vidc.enc.narrow.searchrange=1
-media.camera.ts.monotonic=1
-mm.enable.sec.smoothstreaming=false
-ro.media.dec.jpeg.memcap=8000000 
-ro.media.enc.hprof.vid.bps=8000000
-
-# Miracast
-persist.debug.wfd.enable=1
-persist.sys.wft.enable=0
-
-# GPS
-persist.mot.gps.conf.from.sim=true
-persist.mot.gps.smart_battery=1
-persist.mot.gps.assisted=false
-persist.gps.qc_nlp_in_use=0
-ro.pip.gated=0
-
-# FM
-ro.fm.transmitter=false
-
-# Coresight
-persist.debug.coresight.config=stm-events
-
-# Dalvik
-dalvik.vm.boot-dex2oat-threads=4
-dalvik.vm.dex2oat-threads=2
-dalvik.vm.image-dex2oat-threads=4
-dalvik.vm.isa.arm.features=default
-dalvik.vm.isa.arm.variant=cortex-a53
-
-# Perf
-ro.vendor.gt_library=libqti-gt.so
-ro.vendor.at_library=libqti-at.so
-sys.games.gt.prof=0
-ro.core_ctl_min_cpu=2
-ro.core_ctl_max_cpu=4
-ro.vendor.extension_library=libqti-perfd-client.so
-
-# Fingerprint
-persist.qfp=false
-
-# DEX
-ro.sys.fw.dex2oat_thread_count=4
-
-persist.dpm.feature=0
-
-# USB
-ro.usb.mtp=2e82
-ro.usb.mtp_adb=2e76
-ro.usb.ptp=2e83
-ro.usb.ptp_adb=2e84
-ro.usb.bpt=2ec1
-ro.usb.bpt_adb=2ec5
-ro.usb.bpteth=2ec3
-ro.usb.bpteth_adb=2ec6
-
-# SSR
-persist.sys.ssr.restart_level=ALL_ENABLE
-
-# DRM
-drm.service.enabled=true
-
-# Wi-fi
-net.tcp.2g_init_rwnd=10
-wifi.interface=wlan0
-
-# Play Store
-ro.com.google.clientidbase=android-motorola
-ro.com.google.clientidbase.ms=android-motorola
-ro.com.google.clientidbase.am=android-motorola
-ro.com.google.clientidbase.gmm=android-motorola
-ro.com.google.clientidbase.yt=android-motorola
-
-#Enable delay service restart
+# Enable Delay Service Restart
 ro.am.reschedule_service=true
 
-# XLAT
-persist.net.doxlat=true
+#Trim properties
+ro.sys.fw.use_trim_settings=true
+ro.sys.fw.empty_app_percent=50
+ro.sys.fw.trim_empty_percent=100
+ro.sys.fw.trim_cache_percent=100
+ro.sys.fw.trim_enable_memory=2147483648
+
+#Optimal dex2oat threads for faster app installation
+ro.sys.fw.dex2oat_thread_count=4
+
+# set cutoff voltage to 3200mV
+ro.cutoff_voltage_mv=3200
+
+#set the debug configuration for 8956/76
+persist.debug.8976.config=true
+
+#force HAL1 for below packages
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+
+#properties for limiting preview size in camera
+camera.display.umax=1920x1080
+camera.display.lmax=1280x720
+
+#low power mode for camera
+camera.lowpower.record.enable=1
+
+#enable game colocation feature
+sched.colocate.enable=1
+
+
+#[FEATURE]-Add-BEGIN by TCTNB.Danbin.Xu,09/22/2015,Task-571151,
+#notification appears after 2 times reject cause #17
+persist.radio.manual_nw_rej_ct=1
+#[FEATURE]-Add-END by TCTNB.Danbin.Xu
+
+#[FEATURE]-Add by TCTNB.Liu Jie,Task-621236
+ro.audio.monitorRotation=true
+
+#[BUGFIX]-Add-BEGIN by TCTNB.Qiancheng.Zhao,28/12/2015,defect-1239714
+persist.media.hls.customization=1
+persist.media.hls.image_support=1
+persist.media.hls.actual_bw=1
+persist.media.hls.asym_bw=1
+persist.media.hls.cust_bw=1
+persist.media.hls.start_SeqNo=1
+
+#add by zhi-zhang, 2016/1/6, Task-1353218
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.ROTATION_ENABLE=1
+persist.dbg.volte_avail_ovr=1
+persist.radio.VT_USE_MDM_TIME=0
+
+#add by zhi-zhang, 2016/1/19, Task-1353218
+persist.rcs.supported=1
+persist.OPERATOR_MODE=9
+
+#[BUGFIX]-Add-BEGIN by TCTNB.Minjie.Cai,1/13/2016,defect-1280737
+av.debug.disable.pers.cache=1
+#[BUGFIX]-Add-END by TCTNB.Minjie.Cai
+
+
+#[BUGFIX]-Add-BEGIN by xiaoming.hu@tcl.com
+persist.camera.mobicat=2
+persist.camera.stats.debugexif=3080192
+#[BUGFIX]-Add-END by xiaoming.hu@tcl.com
+
+#[TASK]-ADD-BEGIN by TCTSH.CYJ, task-1822482, 2016/03/16, add sensor hal log for all idol4 projects, not only idol4s
+persist.debug.sensors.hal=1
+debug.qualcomm.sns.daemon=1
+debug.qualcomm.sns.libsensor1=1
+#[TASK]-ADD-END by TCTSH.CYJ, task-1822482, 2016/03/16, add sensor hal log for all idol4 projects, not only idol4s
 
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #
-ro.build.version.qcom=LA.BR.1.3.3-02720-8976.0
-ro.mot.build.customerid=retail
-ro.mot.build.version.sdk_int=24
-ro.mot.build.product.increment=24
-ro.mot.build.version.release=24.24
-ro.mot.ignore_csim_appid=true
-ro.cutoff_voltage_mv=3200
+dalvik.vm.heapminfree=4m
+dalvik.vm.heapstartsize=16m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapmaxfree=8m
+keyguard.no_require_sim=true
+ro.carrier=unknown
+ro.vendor.extension_library=libqti-perfd-client.so
+persist.radio.sib16_support=1
+persist.radio.custom_ecc=0
+ro.com.google.gmsversion=6.0_r4
+persist.service.adb.enable=0
+ro.product.first_api_level=23
+persist.sys.dload.enable=0
+persist.sys.ssr.restart_level=ALL_ENABLE
+persist.debug.multimedia=0
+af.fast_track_multiplier=2
+audio_hal.period_size=192
+persist.sys.dalvik.vm.lib.2=libart
+dalvik.vm.isa.arm64.variant=generic
+dalvik.vm.isa.arm64.features=default
+dalvik.vm.isa.arm.variant=cortex-a53
+dalvik.vm.isa.arm.features=default
+net.bt.name=Android
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+ro.expect.recovery_id=0xa3b1c7865409da6ef64df581471d77238633fd69000000000000000000000000
+#
+#jrd sys properties
+#
+
+ro.def.preload.sdn=0
+ro.config.ringtone=Fresh.ogg
+ro.config.notification_sound=Success.mp3
+ro.config.alarm_alert=Ahead.ogg
+ro.com.google.clientidbase=android-alcatel
+ro.com.google.clientidbase.ms=android-alcatel
+ro.com.google.clientidbase.gmm=android-alcatel
+ro.com.google.clientidbase.am=android-alcatel
+ro.com.google.clientidbase.yt=android-alcatel
+ro.setupwizard.mode=OPTIONAL
+persist.sys.timezone=Europe/Moscow
+persist.orangeapn.selectable=true
+ro.com.android.mobiledata=true
+ro.com.android.dataroaming=false
+ro.product.locale.language=ru
+ro.product.locale.region=RU
+persist.sys.usb.protect=0
+persist.sys.usb.config=mtp
+ro.kernel.diag.enable=true
+persist.adb.notify=1
+ro.def.software.version=010 03
+ro.def.software.svn=010 03
+ro.def.hardware.version=PIO1
+persist.radio.multisim.config=dsds
+drm.service.enabled=true
+feature.tct.drm.enabled=true
+def.tct.drm.cd.enabled=true
+def.tct.drm.sd.enabled=true
+persist.sys.tct_sar.enabled=0
+ro.bluetooth.name=alcatel IDOL 4
+ro.bluetooth.name.telcel=AlCATEL Idol 4
+persist.sys.softap.wps.enable=false
+persist.dpm.feature=7
+persist.dpm.config.file=0
+ro.telephony.default_network=9
+persist.radio.mns_with_all_rat=1
+persist.radio.apm_sim_not_pwdn=1
+persist.data_netmgrd_mtu=1440
+def.uaprofile.enabled=false
+def.uaprofile.prefix=http://www-ccpp.tcl-ta.com/
+ro.support.fastload.cdm=true
+def.uaprofile.suffix=files/6055K.xml
+ro.download.useragent.enable=0
+ro.def.browser=0
+persist.radio.orig_num_disp=false
+persist.sys.hideNaviBar=false
+ro.ssv.enabled=false
+ro.ssv.operator.choose=GMS
+ro.ssv.ringtone=default,Claro.mp3,334020,Telcel.mp3
+ro.ssv.notification_sound=default,Claro.mp3,334020,Telcel.mp3
+ro.ssv.alarm_alert=default,Dew.mp3,334020,Xylo.mp3
+ro.kernel.nfc.enable=true
+def.tctfw.brandMode.name=alcatel IDOL 4
+ro.com.movilnet.SP.label=false
+ro.config.google.clientiddata1=722310,-ar,73003,-cl,732101,-co,71203,-cr,37002,-do,74001,-ec,70401,-gt,708001,-hn
+ro.config.google.clientiddata2=71021,-ni,71610,-pe,70601,-sv,74810,-py,330110,-pr,71403,-pa,334020,-mx,74402,-uy
+def.zenMode.allowCalls=0
+def.7bit.to.ascii.enable=false
+ro.default.locale.input=ru_RU:en_US
+ro.need.support.ru.input=true
+persist.sys.flipcover.feature=2
+def.tctfw.build.number=010 03
+def.sys.stk.sume.name=false
+ro.com.android.multisim.data=true,false
+ro.def.dnsmasq.least.time=120m
+feature.tethering.check.enabled=false
+ro.set.nl.cb.on=false
+persist.sys.media.rtp-ports=15550-65535
+gsm.network.offset=
+phone.num.significant.length=10
+vcard.phonenumber.format=true
+ro.headset.sound.mode=1
+ro.ssv.phone.num.match.len1=73010,8,74807,7,72207,6,33403,7,70403,8,70604,8,710300,8,714020,8,732123,10,73001,8,73002,8
+ro.ssv.phone.num.match.len2=732101,10,732103,10,732111,10,74000,8,74001,8,74002,8,71606,7,73404,10,71204,8
+ro.ssv.phone.num.match.len3=73003,8,722070,6,71030,8,71402,8,334030,7,46001,9,46002,8
+ro.ssv.phone.num.match.len4=73004,8,73005,8,73006,8,73007,8,73008,8,73009,8,73011,8,73099,8
+debug.jrdrecord=0
+ro.config.phnum.accurate=false
+ro.config.default.message=com.android.messaging
+persist.eccforchina.enable=false
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+ro.vrglass.enabled=true
+ro.vr.lightsensor=true
+def.customized.stk.app.name=0
+gsm.stk.perso.app.title=
+ro.vf.audio.enforce.audible=false
+persist.radio.aosp_usr_pref_sel=true
+ro.x.wap.profile=http://www-ccpp.tcl-ta.com/files/6055K.xml
+persist.radio.redir_party_num=0
+contacts.display.photo_size=720
+contacts.thumbnail.size=96
+player.relative.volume.hipri=80
+player.relative.volume.lopri=50
+ro.boot.ringtone.enable=1
+ro.sf.lcd_density=480
+ro.cb.channel50.brazil=false
+ro.config.smsencode.forgreek.on=true
+persist.data.iwlan.enable=FALSE
+persist.radio.VT_ENABLE=0
+persist.radio.VOLTE_ENABLE=FALSE
+persist.radio.domain.ps=FALSE
+persist.radio.calls.on.ims=TRUE
+persist.radio.vrte_logic=1
+persist.radio.jbims=1
+persist.ims.enableADBLogs=1
+persist.ims.enableDebugLogs=1
+persist.sys.language=
+persist.sys.country=
+def.is.open.modemlog=true
+vdf.sml.ergo.type=3
+vdf.sml.ergo.UI=0
+persist.sys.ssr.enable_efsrec=1
+ro.default.en.ru.input=true
+ro.gid.3apk.enabled=false
+persist.target.logs.level=2
+def.stk.show.double.icon=true
+persist.radio.hotspot.support=0
+ro.email.config.EasUA=Alcatel6055U
+persist.sys.lang.mccmnc=
+ro.tct.acdb.operator=
+ro.tct.camera.sound.forced=0
+persist.low.volume.enabled=false
+def.display.year=1970
