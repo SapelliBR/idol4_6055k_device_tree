@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter idol4_6055k, $(TARGET_DEVICE)),)
+ifneq ($(filter idol4, $(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
