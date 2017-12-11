@@ -1,0 +1,3 @@
+add_lunch_combo lineage_idol4_6055k-eng
+add_lunch_combo lineage_idol4_6055k-user
+add_lunch_combo lineage_idol4_6055k-userdebug
