@@ -1,7 +1,7 @@
-Device Tree for Alcatel Idol 4 (idol4_6055)
+Device Tree for Alcatel Idol 4 (idol4_6055k)
 ===========================================
 
-The Idol 4 6055 series (b/k) (codenamed _"idol4_6055"_) manufactured by TCL Corporation and marketed by Alcatel Mobile Phones. They were unveiled during Mobile World Congress in February 2016, and are a successor to the Idol 3.[1] The Idol 4 and 4S are positioned as mid-range devices, with the 4S serving as a higher-end model with a faster processor, a larger 1440p display, and a bundled virtual reality headset which serves as the device's packaging.
+The Idol 4 6055k (codenamed _"idol4_6055k"_) manufactured by TCL Corporation and marketed by Alcatel Mobile Phones. They were unveiled during Mobile World Congress in February 2016, and are a successor to the Idol 3.[1] The Idol 4 and 4S are positioned as mid-range devices, with the 4S serving as a higher-end model with a faster processor, a larger 1440p display, and a bundled virtual reality headset which serves as the device's packaging.
 
 It was released in December 2016..
 
