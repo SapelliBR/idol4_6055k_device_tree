@@ -19,7 +19,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Also get non-open-source specific aspects if available
 #$(call inherit-product, vendor/motorola/athene/athene-vendor.mk)
-$(call inherit-product, vendor/alcatel/idol4_6055k/idol4-vendor.mk)
+#verificar
+#$(call inherit-product, vendor/alcatel/idol4_6055k/idol4-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -282,5 +283,5 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-PRODUCT_GMS_CLIENTID_BASE := android-motorola
+PRODUCT_GMS_CLIENTID_BASE := android-alcatel
 

@@ -17,8 +17,8 @@
 #
 
 set -e
-export DEVICE=idol4_6055k
-export VENDOR=alcatel
+export DEVICE=idol4
+export VENDOR=tcl
 
 # Load extractutils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"

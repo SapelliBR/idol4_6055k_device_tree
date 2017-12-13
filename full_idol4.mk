@@ -1,4 +1,4 @@
-LOCAL_PATH := device/alcatel/idol4_6055k
+LOCAL_PATH := device/tcl/idol4
 
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
 
@@ -14,7 +14,7 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, build/target/product/full.mk)
 
-PRODUCT_NAME := idol4_6055k
+PRODUCT_NAME := full_idol4
 
 # Time Zone data for Recovery
 PRODUCT_COPY_FILES += \

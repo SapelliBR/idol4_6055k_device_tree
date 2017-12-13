@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/TCL/idol4
+LOCAL_PATH := device/tcl/idol4
 
 #is this correct?
 BOARD_VENDOR := alcatel-qcom
@@ -36,15 +36,34 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8952
 TARGET_NO_BOOTLOADER := true
 
 # Architecture
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
+#from https://github.com/DeckerSU/idol4_6055k_device_tree/blob/master/BoardConfig.mk
+#begin
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
-TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+#TARGET_2ND_ARCH := arm
+#TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+#TARGET_2ND_CPU_ABI := armeabi-v7a
+#TARGET_2ND_CPU_ABI2 := armeabi
+#TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
+#end
+
+#TARGET_ARCH := arm
+#TARGET_ARCH_VARIANT := armv7-a-neon
+#TARGET_CPU_ABI := armeabi-v7a
+#TARGET_CPU_ABI2 := armeabi
+#TARGET_CPU_VARIANT := cortex-a53
+#TARGET_CPU_SMP := true
+#ARCH_ARM_HAVE_TLS_REGISTER := true
+#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
@@ -54,12 +73,12 @@ BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbTool_custom
 BOARD_DTBTOOL_ARGS := --force-v3 --motorola 1
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := idol4_defconfig
-TARGET_KERNEL_SOURCE := kernel/TCL/idol4
+TARGET_KERNEL_SOURCE := kernel/tcl/idol4
 #TARGET_PREBUILT_KERNEL := device/alcatel/idol4_6055k/kernel
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-gnueabihf-
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
@@ -105,13 +124,20 @@ HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 
 # Filesystem
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216        # 16384 * 1024 mmcblk0p28
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216    # 16384 * 1024 mmcblk0p29
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2600255488    # 2539312 * 1024 mmcblk0p47
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 28819456     # 28144 * 1024 mmcblk0p30
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 27258650624 # 26619776 * 1024 mmcblk0p48
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_CACHEIMAGE_PARTITION_SIZE := 260014080      # 253920 * 1024 mmcblk0p46
+TARGET_USERIMAGES_USE_EXT4          := true
+BOARD_BOOTIMAGE_PARTITION_SIZE      := 0x04000000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 0x04000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 3749707776
+#Reserve space for data encryption (11053800960 - 16384 = 11053784576)
+BOARD_USERDATAIMAGE_PARTITION_SIZE  := 11053800960 
+BOARD_CACHEIMAGE_PARTITION_SIZE     := 268435456
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE   := ext4
+BOARD_PERSISTIMAGE_PARTITION_SIZE   := 33554432
+BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE              := 131072 # BOARD_KERNEL_PAGESIZE * 64
+# ???
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -151,6 +177,7 @@ TARGET_PER_MGR_ENABLED := true
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Malloc
 MALLOC_SVELTE := true
@@ -174,6 +201,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
 
 # SDClang
 TARGET_USE_SDCLANG := true

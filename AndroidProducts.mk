@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-$(LOCAL_DIR)/lineage_idol4_6055k.mk
+$(LOCAL_DIR)/lineage.mk
