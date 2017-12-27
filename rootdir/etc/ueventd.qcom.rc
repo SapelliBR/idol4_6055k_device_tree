@@ -27,9 +27,6 @@
 
 # the DIAG device node is not world writable/readable.
 /dev/diag                 0660   system     qcom_diag
-/dev/ttydiag0             0660   system     qcom_diag
-/dev/ttydiag1             0660   system     qcom_diag
-/dev/ttydiag2             0660   system     qcom_diag
 
 /dev/genlock              0666   system     system
 /dev/kgsl                 0666   system     system
@@ -50,14 +47,6 @@
 /dev/ipaNatTable          0660   net_admin  net_admin
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
-
-/dev/block/bootdevice/by-name/frp 0600 system system
-
-# Block devices
-/dev/block/bootdevice/by-name/clogo        0660 root mot_tcmd
-/dev/block/bootdevice/by-name/cid          0660 root mot_tcmd
-/dev/block/bootdevice/by-name/utags        0660 mot_tcmd system
-/dev/block/bootdevice/by-name/utagsBackup  0660 mot_tcmd system
 
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
@@ -118,7 +107,6 @@
 /dev/media*               0660   system     camera
 /dev/v4l-subdev*          0660   system     camera
 /dev/qseecom              0660   system     drmrpc
-/dev/sec                  0660   system     drmrpc
 /dev/seemplog             0660   system     system
 /dev/pft                  0660   system     drmrpc
 /dev/gemini0              0660   system     camera
@@ -181,7 +169,13 @@
 /dev/sdio_tty_ciq_00      0660   system     system
 /dev/tty_sdio_00          0660   system     system
 /dev/ttyGS0               0660   system     system
-/dev/i2c-5                0660   media       media
+# [FEATURE]-Add-BEGIN by kun.guan, 526254, 2015/09/23, add for Idol455
+/dev/i2c-2                0660   system     audio
+# [FEATURE]-Add-END   by kun.guan, 526254, 2015/09/23, add for Idol455
+# [FEATURE]-Add-BEGIN TCT-NB Tianhongwei 09/25/2015
+/dev/i2c-1                0660   system     audio
+# [FEATURE]-Add-END Tianhongwei
+/dev/i2c-5                0660   media      media
 /dev/voice_svc            0660   system     audio
 /dev/avtimer              0660   system     audio
 
@@ -238,7 +232,6 @@
 /dev/nfc-nci              0660    nfc         nfc
 /dev/nq-nci               0660    nfc         nfc
 /dev/assd                 0660    nfc         nfc
-/dev/bcm2079x-i2c         0660    nfc         nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -248,12 +241,19 @@
 # SSR devices
 /dev/subsys_*         0640   system     system
 
+# Ultrasound device
+/dev/usf1                 0660   system     system
+
 # Ramdump devices
-/dev/ramdump*             0660   radio      radio
+/dev/ramdump*             0640   system     system
 
+#Add-BEGIN by TCTSH.lijuan.wu 2016.01.11 task-1394158 merged [efs] erase efs partition while modem crash
+# efsrec devices
+/dev/efsrec*             0640   system     system
+#Add-END by TCTSH.lijuan.wu
 
-# I2C
-/dev/i2c-*                0660   root       system
+#[FEATURE]-ADD by TCTSH.lijuan.wu, mini log, task-1488899
+/dev/ssr*             0640   system     system
 
 #Improve Touch
 /dev/hbtp_input           0660   system     system
@@ -264,16 +264,6 @@
 /dev/ontario              0640   system     system
 
 # Add device block for FRP
-/dev/block/platform/soc.0/7824900.sdhci/by-name/config    0660   system     system
-/dev/block/bootdevice/by-name/frp 0600 system system
-
-# Moto Sensors
-/dev/stml0xx               0660  system     compass
-/dev/stml0xx_as            0660  compass    compass
-/dev/stml0xx_ms            0660  compass    compass
-
-#DTV
-/dev/isdbt                 0660 mot_dtv  mot_dtv
-
-# Laser device
-/dev/laser                 0660   system     camera
+/dev/block/platform/soc.0/7824900.sdhci/by-name/config     0660   system     system
+# kill switch also need support persistent partition
+/dev/block/platform/soc.0/7824900.sdhci/by-name/persistent 0660   system     system

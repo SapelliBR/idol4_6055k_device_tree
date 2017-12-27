@@ -1,16 +1,22 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := pp_calib_data_mipi_mot_cmd_boe_1080p_546_v0.xml
+LOCAL_MODULE       := pp_calib_data_nt35596_1080p_video_mode_dsi_panel.xml
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := pp_calib_data_mipi_mot_cmd_boe_1080p_546_v0.xml
+LOCAL_SRC_FILES    := pp_calib_data_nt35596_1080p_video_mode_dsi_panel.xml
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := pp_calib_data_mipi_mot_cmd_lgd_1080p_546_v0.xml
+LOCAL_MODULE       := pp_calib_data_truly_1080p_video_mode_dsi_panel.xml
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := pp_calib_data_mipi_mot_cmd_lgd_1080p_546_v0.xml
+LOCAL_SRC_FILES    := pp_calib_data_truly_1080p_video_mode_dsi_panel.xml
 include $(BUILD_PREBUILT)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE       := pp_calib_data_vm5296_1080p_video_mode_dsi_panel.xml
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := pp_calib_data_vm5296_1080p_video_mode_dsi_panel.xml
+include $(BUILD_PREBUILT)
